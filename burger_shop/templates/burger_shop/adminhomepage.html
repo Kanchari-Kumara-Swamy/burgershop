@@ -1,0 +1,35 @@
+{% extends 'burger_shop/base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand"> welcome {{ username }}</a>
+    <a href="/adminorders/" class="nav-item btn btn-warning" style="text-decoration: none; color: black" > all orders </a>
+      <a href="/adminlogout/" class="btn btn-danger my-2 my-sm-0" type="submit">logout</a>
+
+</nav>
+<form method="POST" action="/addburger/">
+    <div class="container" style=" display:block; margin: auto; width:550px; margin-top: 15px">
+        {% csrf_token %}
+        <input type="text" class="form-control" placeholder="name" name="burger" style="width:200px; display:inline">
+         <input type="text" class="form-control" name="price" placeholder="price" style="width:200px; display:inline">
+        <input type="submit" class="btn btn-success">
+    </div>
+</form>
+<table style="margin: auto; width: 700px; position:absolute; right:230px; margin-top: 20px">
+    <tr>
+        <th> Burger </th>
+        <th> Price </th>
+        <th> Delete </th>
+    </tr>
+    {% for burger in burgers %}
+    <tr>
+        <td>{{burger.name}}</td>
+        <td>{{burger.price}}</td>
+        <td><a href="/deleteburger/{{ burger.id }}/" class="btn btn-danger"> delete </a> </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+{% endblock %}

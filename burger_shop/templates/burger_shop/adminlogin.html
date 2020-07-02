@@ -1,0 +1,19 @@
+{% extends 'burger_shop/base.html' %}
+
+{% block content %}
+
+    {% for message in messages %}
+        <p style="text-align: center; color: red"> {{ message }} </p>
+    {% endfor %}
+    <div style="background-color: #7FFF00; width: 300px; display:block ;
+         margin : auto; margin-top:200px ; padding: 15px">
+        <form method="POST" action="/adminauthenticate/">
+            {% csrf_token %}
+            <h3 style="text-align: center"> Admin SignUp </h3>
+            <input type="text" style=" margin-bottom:5px" placeholder="username" class="form-control" name="username">
+            <input type="password" style=" margin-bottom:5px" placeholder="password" class="form-control" name="password">
+            <input type="submit" style=" display: block; margin:auto" class="btn btn-success",  name ='submit'>
+    </form>
+    </div>
+
+{% endblock %}
